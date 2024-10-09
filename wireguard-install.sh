@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Secure WireGuard server installer
+# https://github.com/angristan/wireguard-install
+
 RED='\033[0;31m'
 ORANGE='\033[0;33m'
 GREEN='\033[0;32m'
@@ -158,6 +160,11 @@ function installQuestions() {
 		fi
 	done
 
+	# Prompt for MTU
+	until [[ ${MTU} =~ ^[0-9]+$ ]] && [ "${MTU}" -ge 1280 ] && [ "${MTU}" -le 1500 ]; do
+		read -rp "MTU (default is 1420): " -e -i 1420 MTU
+	done
+
 	echo ""
 	echo "Okay, that was all I needed. We are ready to setup your WireGuard server now."
 	echo "You will be able to generate a client at the end of the installation."
@@ -223,13 +230,15 @@ SERVER_PRIV_KEY=${SERVER_PRIV_KEY}
 SERVER_PUB_KEY=${SERVER_PUB_KEY}
 CLIENT_DNS_1=${CLIENT_DNS_1}
 CLIENT_DNS_2=${CLIENT_DNS_2}
-ALLOWED_IPS=${ALLOWED_IPS}" >/etc/wireguard/params
+ALLOWED_IPS=${ALLOWED_IPS}
+MTU=${MTU}" >/etc/wireguard/params
 
 	# Add server interface
 	echo "[Interface]
 Address = ${SERVER_WG_IPV4}/24,${SERVER_WG_IPV6}/64
 ListenPort = ${SERVER_PORT}
-PrivateKey = ${SERVER_PRIV_KEY}" >"/etc/wireguard/${SERVER_WG_NIC}.conf"
+PrivateKey = ${SERVER_PRIV_KEY}
+MTU = ${MTU}" >"/etc/wireguard/${SERVER_WG_NIC}.conf"
 
 	if pgrep firewalld; then
 		FIREWALLD_IPV4_ADDRESS=$(echo "${SERVER_WG_IPV4}" | cut -d"." -f1-3)".0"
@@ -355,6 +364,7 @@ function newClient() {
 PrivateKey = ${CLIENT_PRIV_KEY}
 Address = ${CLIENT_WG_IPV4}/32,${CLIENT_WG_IPV6}/128
 DNS = ${CLIENT_DNS_1},${CLIENT_DNS_2}
+MTU = ${MTU}
 
 [Peer]
 PublicKey = ${SERVER_PUB_KEY}
