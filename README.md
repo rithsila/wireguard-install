@@ -1,6 +1,34 @@
-Certainly! Below is a comprehensive `README.md` file for your GitHub repository. This file will guide users on how to install and manage WireGuard using your script.
+WireGuard Installation Script
+This script automates the installation and management of a WireGuard VPN server on Linux systems. It provides an easy-to-use interface for setting up WireGuard, managing clients, and handling server configurations.
+Features
 
-```markdown
+Automated WireGuard server installation
+Easy client management (add, list, revoke)
+Support for multiple Linux distributions
+Automatic firewall configuration
+QR code generation for client configs
+IPv4 and IPv6 support
+
+Requirements
+
+A supported Linux distribution:
+
+Ubuntu 18.04+
+Debian 10+
+Fedora 32+
+CentOS 8+
+AlmaLinux 8+
+Rocky Linux 8+
+Oracle Linux 8+
+Arch Linux
+
+
+Root access
+A public IP address (IPv4 or IPv6)
+
+Usage
+markdown
+Copy code
 # WireGuard Installer
 
 This script automates the installation and management of WireGuard VPN on various Linux distributions, including support for both OpenVZ and KVM environments. It also allows for the adjustment of the MTU (Maximum Transmission Unit) to optimize network performance.
@@ -22,79 +50,84 @@ This script automates the installation and management of WireGuard VPN on variou
 
 1. **Download the Script**:
    ```bash
-   wget https://raw.githubusercontent.com/rithsila/wireguard-install/main/wireguard-install.sh
-   ```
+   wget https://raw.githubusercontent.com/yourusername/wireguard-install/main/wireguard-install.sh
+Make the Script Executable:
 
-2. **Make the Script Executable**:
-   ```bash
-   chmod +x wireguard-install.sh
-   ```
+bash
+Copy code
+chmod +x wireguard-install.sh
+Run the Script with Root Privileges:
 
-3. **Run the Script with Root Privileges**:
-   ```bash
-   sudo ./wireguard-install.sh
-   ```
-
-## Usage
-
-### Initial Installation
-
+bash
+Copy code
+sudo ./wireguard-install.sh
+Usage
+Initial Installation
 When you run the script for the first time, it will guide you through the installation process. You will be prompted to provide the following information:
 
-- **Public IP Address**: The public IP address of your server.
-- **Public Interface**: The network interface connected to the internet.
-- **WireGuard Interface Name**: The name of the WireGuard interface (default is `wg0`).
-- **Server WireGuard IPv4**: The IPv4 address for the WireGuard server.
-- **Server WireGuard IPv6**: The IPv6 address for the WireGuard server.
-- **Server Port**: The port on which WireGuard will listen.
-- **Client DNS**: The DNS resolvers to use for clients.
-- **Allowed IPs**: The IP ranges that clients can access through the VPN.
-- **MTU**: The Maximum Transmission Unit (MTU) for the WireGuard interface.
+Public IP Address: The public IP address of your server.
 
-### Managing Clients
+Public Interface: The network interface connected to the internet.
 
+WireGuard Interface Name: The name of the WireGuard interface (default is wg0).
+
+Server WireGuard IPv4: The IPv4 address for the WireGuard server.
+
+Server WireGuard IPv6: The IPv6 address for the WireGuard server.
+
+Server Port: The port on which WireGuard will listen.
+
+Client DNS: The DNS resolvers to use for clients.
+
+Allowed IPs: The IP ranges that clients can access through the VPN.
+
+MTU: The Maximum Transmission Unit (MTU) for the WireGuard interface.
+
+Managing Clients
 After the initial installation, you can manage clients using the following options:
 
-1. **Add a New Client**:
-   - Run the script and select option `1` to add a new client.
-   - Follow the prompts to configure the new client.
+Add a New Client:
 
-2. **List All Clients**:
-   - Run the script and select option `2` to list all existing clients.
+Run the script and select option 1 to add a new client.
 
-3. **Revoke an Existing Client**:
-   - Run the script and select option `3` to revoke an existing client.
-   - Select the client to revoke from the list.
+Follow the prompts to configure the new client.
 
-### Uninstallation
+List All Clients:
 
+Run the script and select option 2 to list all existing clients.
+
+Revoke an Existing Client:
+
+Run the script and select option 3 to revoke an existing client.
+
+Select the client to revoke from the list.
+
+Uninstallation
 To uninstall WireGuard and remove all configuration files:
 
-1. Run the script and select option `4`.
-2. Confirm the uninstallation when prompted.
+Run the script and select option 4.
 
-## Troubleshooting
+Confirm the uninstallation when prompted.
 
-- **WireGuard Not Running**: If WireGuard does not start after installation, check the status with `systemctl status wg-quick@wg0`. If you see an error like "Cannot find device wg0", try rebooting the server.
-- **No Internet Connectivity**: If clients cannot access the internet, ensure that the server's firewall rules are correctly configured and that the server has internet connectivity.
+Troubleshooting
+WireGuard Not Running: If WireGuard does not start after installation, check the status with systemctl status wg-quick@wg0. If you see an error like "Cannot find device wg0", try rebooting the server.
 
-## Contributing
+No Internet Connectivity: If clients cannot access the internet, ensure that the server's firewall rules are correctly configured and that the server has internet connectivity.
 
+Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
-## License
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Acknowledgments
+This script is based on the work of Nyr and angristan.
 
-## Acknowledgments
-
-- This script is based on the work of [Nyr](https://github.com/Nyr/wireguard-install) and [angristan](https://github.com/angristan/wireguard-install).
-- Special thanks to the WireGuard community for their continuous support and development.
-
----
+Special thanks to the WireGuard community for their continuous support and development.
 
 For any questions or issues, please open an issue on GitHub.
-```
+
+Copy code
 
 ### Key Sections:
 1. **Features**: Highlights the main features of the script.
