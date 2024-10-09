@@ -47,7 +47,7 @@ This script automates the installation and management of WireGuard VPN on variou
 
 1. **Download the Script**:
    ```bash
-   wget https://raw.githubusercontent.com/yourusername/wireguard-install/main/wireguard-install.sh
+   wget https://raw.githubusercontent.com/rithsila/wireguard-install/main/wireguard-install.sh
    ```
 
 2. **Make the Script Executable**:
