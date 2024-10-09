@@ -130,5 +130,3 @@ For any questions or issues, please open an issue on GitHub.
 6. **Contributing**: Encourages contributions and provides guidelines.
 7. **License**: Specifies the license under which the project is distributed.
 8. **Acknowledgments**: Gives credit to the original authors and the WireGuard community.
-
-Save this content to a file named `README.md` in the root of your GitHub repository. This will provide users with clear instructions and information about your WireGuard installation script.
